@@ -1,12 +1,23 @@
 import { createContext, useState, type Dispatch, type SetStateAction } from "react";
+
 interface MockType {
+    id: number,
+    description: string,
+    price: number,
+    promotional_price: number,
+    promotional_porcentage: number,
+    images: Images[] 
+}
+
+interface Images {
     id: number
-    image: string
+    url: string
 }
 
 interface SetImage {
     renderedImage: number 
-    setRenderedImage: Dispatch<SetStateAction<number>>; 
+    setRenderedImage: Dispatch<SetStateAction<number>>;
+  
 }
 
 export const ImageContext = createContext<MockType[] | undefined>(undefined);

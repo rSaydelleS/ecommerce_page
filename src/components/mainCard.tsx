@@ -45,16 +45,20 @@ export default function MainCard() {
                 </div>
                 <div className="hidden md:flex md:gap-5 md:items-center md:py-4">
                     {
-                        thumbnailImageMock?.map(({image, id}) => {
+                        thumbnailImageMock?.map((image) => {
                             return(
-                                <div key={id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
-                                    <img className={`
-                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
-                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
-                                    `}
-                                        src={image} 
-                                        onClick={() => setRenderedImage(id)}
-                                    />
+                                <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
+                                    <div className="flex flex-row justify-around w-full max-w-[600px]">    
+                                        {image.images.map(({id, url}) => {
+                                            return(<img className={`
+                                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
+                                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
+                                                    `}
+                                                        src={url} 
+                                                        onClick={() => setRenderedImage(id)}
+                                                    />)
+                                        })}
+                                    </div>
                                 </div>
                             )
                         })
@@ -99,15 +103,21 @@ export default function MainCard() {
                         </div>
                         <div className="flex gap-5 items-center py-4">
                     {
-                        thumbnailImageMock?.map(({image, id}) => {
+                        thumbnailImageMock?.map((image) => {
                             return(
-                                <div key={id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
-                                    <img className={`
-                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
-                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
-                                    `}
-                                        src={image} 
-                                    />
+                                <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
+                                    {
+                                        image.images.map(({id, url}) => {
+                                            return(
+                                                <img className={`
+                                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
+                                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
+                                                    `}
+                                                        src={url} 
+                                                />
+                                            )
+                                        })
+                                    }
                                 </div>
                             )
                         })

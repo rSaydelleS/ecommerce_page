@@ -35,7 +35,7 @@ export default function Header() {
                 onClick={() => setOpen(true)}
                 />
             </div>
-            <h1 className="font-semibold text-gray-600 text-4xl">senakers</h1>
+            <h1 className="font-semibold text-black text-4xl">senakers</h1>
             <ul className="hidden md:flex md:justify-between md:gap-9">
             {headerMock.map(({id, content}) => {
                 return <li className="cursor-pointer hover:font-bold ease-in-out duration-200" key={id}>{content}</li> 
