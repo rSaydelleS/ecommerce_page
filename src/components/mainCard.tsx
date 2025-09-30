@@ -1,11 +1,19 @@
-import { useContext, useState } from "react"
-import { ImageContext, useImage } from "../ImageContext"
+import { useState } from "react";
 
-export default function MainCard() {
-    const thumbnailImageMock = useContext(ImageContext);
-    const {renderedImage, setRenderedImage} = useImage();
+
+interface Images {
+    id: number
+    url: string
+}
+interface ImagesProps {
+    images: Images[]
+}
+
+export default function MainCard({images}:ImagesProps) {
+
     const [isRendered, setIsRendered] = useState(false);
-  
+    const [renderedImage, setRenderedImage] = useState(1);
+
     return (
 
         <>
@@ -45,26 +53,23 @@ export default function MainCard() {
                 </div>
                 <div className="hidden md:flex md:gap-5 md:items-center md:py-4">
                     {
-                        thumbnailImageMock?.map((image) => {
+                        images.map((image) => {
                             return(
                                 <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
                                     <div className="flex flex-row justify-around w-full max-w-[600px]">    
-                                        {image.images.map(({id, url}) => {
-                                            return(<img className={`
-                                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
-                                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
-                                                    `}
-                                                        src={url} 
-                                                        onClick={() => setRenderedImage(id)}
-                                                    />)
-                                        })}
+                                        <img className={`
+                                        w-full h-full rounded-xl bg-cover overflow-ellipsis
+                                        ${renderedImage === image.id ? "border-orange-500 border-[3px] brightness-125": null}
+                                        `}
+                                            src={image.url} 
+                                            onClick={() => setRenderedImage(image.id)}
+                                        />
                                     </div>
                                 </div>
                             )
                         })
                     }
                 </div>
-
                 {/*modal*/}
                 <div className={
                     `w-full h-full z-50 bg-black/50 backdrop-invert backdrop-opacity-40 
@@ -103,21 +108,16 @@ export default function MainCard() {
                         </div>
                         <div className="flex gap-5 items-center py-4">
                     {
-                        thumbnailImageMock?.map((image) => {
+                        images.map((image) => {
                             return(
                                 <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
-                                    {
-                                        image.images.map(({id, url}) => {
-                                            return(
-                                                <img className={`
-                                                    w-full h-full rounded-xl bg-cover overflow-ellipsis
-                                                    ${renderedImage === id ? "border-orange-500 border-[3px] brightness-125": null}
-                                                    `}
-                                                        src={url} 
-                                                />
-                                            )
-                                        })
-                                    }
+                                    <img className={`
+                                        w-full h-full rounded-xl bg-cover overflow-ellipsis
+                                        ${renderedImage === image.id ? "border-orange-500 border-[3px] brightness-125": null}
+                                        `}
+                                            src={image.url} 
+                                            onClick={() => setRenderedImage(image.id)}
+                                        />
                                 </div>
                             )
                         })

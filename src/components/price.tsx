@@ -1,20 +1,25 @@
 import { useState } from "react"
 
-export default function Price() {
+interface PriceProps {
+    price: number,
+    promotional_price: number,
+    promotional_porcentage: number,
+}
+
+export default function Price({price, promotional_porcentage, promotional_price} : PriceProps) {
     const [quantity, setQuantity] = useState(1);
-    const price = 125.00;
     
     return(
     <div className="text-black">
         <div className="flex flex-row items-center justify-around md:flex-col gap-4 pb-8">
             <div className="flex flex-row gap-4 items-center">
-                <p className="font-bold text-2xl">$ { quantity > 0 ? price * quantity+",00" : ""}</p>
+                <p className="font-bold text-2xl">$ { quantity > 0 ? promotional_price * quantity+",00" : ""}</p>
             <div className="bg-black w-10 text-white rounded-sm p-1">
-                <p>50%</p>
+                <p>{promotional_porcentage}%</p>
             </div>
             </div>
             <div>
-                <p className="line-through text-gray-500">$250.00</p>
+                <p className="line-through text-gray-500">${price}</p>
             </div>
         </div>
         <div className="flex flex-col justify-around items-center gap-10">

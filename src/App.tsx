@@ -3,10 +3,24 @@ import MainCard from "./components/mainCard.tsx";
 import Description from "./components/description.tsx";
 import Price from "./components/price.tsx";
 import './App.css'
-import { ImageContext } from "./ImageContext.ts";
+// import { ImageContext } from "./ImageContext.ts";
+
+interface MockType {
+    id: number,
+    description: string,
+    price: number,
+    promotional_price: number,
+    promotional_porcentage: number,
+    images: Images[] 
+}
+
+interface Images {
+    id: number
+    url: string
+}
 
 function App() {
-    const products_mock = [
+    const products_mock:MockType[] = [
       {
         id: 1,
         description: `These low-profile seneakers your perfect casual wear
@@ -39,19 +53,31 @@ function App() {
   
   return (
     <>
-      <main className="flex flex-col items-center justify-center bg-white relative gap-20 md:h-screen">
-        <div>
-          <Header />
-        </div>
-        <ImageContext.Provider value={products_mock}>
-          <div className="flex flex-col md:flex-row justify-center items-center gap-32 w-full h-full max-w-[1440px]">
-            <MainCard/>
-            <div className="flex flex-col justify-around gap-10 p-4">
-              <Description/>
-              <Price />
-            </div>
-          </div>      
-        </ImageContext.Provider> 
+      <main className="flex flex-col items-center bg-white relative md:h-screen">
+          {
+            products_mock.map((product) => {
+              return(
+                <section
+                  
+                  key={product.id}>
+                  <div>
+                    <Header />
+                  </div>
+                  <div 
+                  className="flex flex-col md:flex-row justify-center items-center gap-32 w-full h-full max-w-[1440px]">
+                    <MainCard images={product.images}/>
+                    <div className="flex flex-col justify-center gap-10 p-4">
+                      <Description description={product.description}/>
+                      <Price 
+                      price={product.price} 
+                      promotional_price={product.promotional_price} 
+                      promotional_porcentage={product.promotional_porcentage} />
+                    </div>
+                  </div> 
+                </section>     
+              )
+            })
+          }
       </main> 
     </>
   )
