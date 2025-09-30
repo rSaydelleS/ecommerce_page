@@ -58,7 +58,7 @@ function App() {
             products_mock.map((product) => {
               return(
                 <section
-                  
+                  className="flex flex-col gap-20"
                   key={product.id}>
                   <div>
                     <Header />

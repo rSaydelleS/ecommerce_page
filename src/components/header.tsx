@@ -27,9 +27,10 @@ export default function Header() {
     const [open, setOpen] = useState(false);
 
     return(
-    <header className="flex justify-around  text-black w-screen relative">
+    <header className="flex justify-between p-4 md:px-10 text-black w-screen relative">
         <div className="flex justify-between items-center gap-9">
-            <div className="md:hidden">
+            {/*mobile modal */}
+            <div className=" md:hidden">
                 <img 
                 src={"../../icon-menu.svg"}
                 onClick={() => setOpen(true)}
@@ -50,15 +51,15 @@ export default function Header() {
                 <img className="w-16 h-16 cursor-pointer" src="../../image-avatar.png" alt="profile photo" />
             </div>
         </div>
-        <div className={` ${open === true ? "absolute left-0 top-0 h-screen z-20 0 flex flex-row": "hidden"}  md:hidden`}>
+        <div className={` ${open === true ? "absolute left-0 top-0 h-screen z-20 flex flex-row": "hidden"}  md:hidden`}>
             <div>
-                <ul className="fixed flex flex-col gap-5 p-10 bg-white shadow-xl shadow-gray-500 h-full">
+                <ul className="fixed flex flex-col gap-5 p-10 pt-32 bg-white shadow-xl shadow-gray-500 h-full">
                     {headerMock.map(({id, content}) => {
                         return <li className="font-bold underline" key={id}>{content}</li> 
                     })}
                 </ul>
             </div>
-            <div className="fixed z-50 bg-white flex items-end">
+            <div className="fixed z-50 flex items-end p-5">
                 <img
                 onClick={() => setOpen(false)}
                 src={"../../icon-close.svg"}
