@@ -2,10 +2,11 @@ import type { Dispatch, SetStateAction } from "react"
 
 interface CartProps {
     price: number
+    quantity: number
     action: Dispatch<SetStateAction<boolean>>
 }
 
-export function Cart({price, action}: CartProps) {
+export function Cart({price, quantity, action}: CartProps) {
     return(
         <div className="flex flex-col items-start bg-white shadow-xl shadow-gray-500 p-20 h-screen gap-10 z-50">
              <div 
@@ -25,6 +26,7 @@ export function Cart({price, action}: CartProps) {
                 src="../../image-product-1.jpg"/>
             </div>
             <p className="font-bold text-2xl">${price}</p>
+            <p className="font-bold text-xl">{quantity}</p>
             <button className="
             flex items-center justify-center gap-2 w-full bg-orange-500 text-white text-xl font-bold px-12 py-2 rounded-xl
             hover:shadow-lg hover:shadow-gray-500 duration-500 ease-in-out cursor-pointer

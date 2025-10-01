@@ -3,9 +3,10 @@ import { Cart } from "./cart";
 
 interface PriceProps {
     price: number
+    quantity: number
 }
 
-export default function Header({price}:PriceProps ) {
+export default function Header({price, quantity}:PriceProps ) {
     const headerMock = [
         {
             id: 1,
@@ -74,7 +75,7 @@ export default function Header({price}:PriceProps ) {
         </div>
         <div 
         className={`${cartOpen ? "absolute right-0 top-0 z-20" : "hidden"}`} >
-            <Cart price={price} action={setCartOpen}/>
+            <Cart price={price} action={setCartOpen} quantity={quantity}/>
         </div>
     </header>
     )

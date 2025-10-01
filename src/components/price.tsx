@@ -1,13 +1,17 @@
-import { useState } from "react"
+// import { useState } from "react"
+
+import type { Dispatch, SetStateAction } from "react"
 
 interface PriceProps {
     price: number,
     promotional_price: number,
     promotional_porcentage: number,
+    quantity:number
+    setQuantity: Dispatch<SetStateAction<number>>
 }
 
-export default function Price({price, promotional_porcentage, promotional_price} : PriceProps) {
-    const [quantity, setQuantity] = useState(1);
+export default function Price({price, promotional_porcentage, promotional_price, quantity, setQuantity} : PriceProps) {
+    // const [quantity, setQuantity] = useState(1);
     
     return(
     <div className="text-black">

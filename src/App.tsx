@@ -3,6 +3,7 @@ import MainCard from "./components/mainCard.tsx";
 import Description from "./components/description.tsx";
 import Price from "./components/price.tsx";
 import './App.css'
+import { useState } from "react";
 // import { ImageContext } from "./ImageContext.ts";
 
 interface MockType {
@@ -50,6 +51,8 @@ function App() {
       }
     ]
 
+    const [quantity, setQuantity] = useState(1);
+
   
   return (
     <>
@@ -61,7 +64,7 @@ function App() {
                   className="flex flex-col gap-20"
                   key={product.id}>
                   <div>
-                    <Header price={product.promotional_price}/>
+                    <Header quantity={quantity} price={product.promotional_price}/>
                   </div>
                   <div 
                   className="flex flex-col md:flex-row justify-center items-center gap-32 w-full h-full max-w-[1440px]">
@@ -71,7 +74,10 @@ function App() {
                       <Price 
                       price={product.price} 
                       promotional_price={product.promotional_price} 
-                      promotional_porcentage={product.promotional_porcentage} />
+                      promotional_porcentage={product.promotional_porcentage}
+                      quantity={quantity}
+                      setQuantity={setQuantity}
+                       />
                     </div>
                   </div> 
                 </section>     
