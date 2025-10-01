@@ -21,7 +21,7 @@ export default function MainCard({images}:ImagesProps) {
                 {/* mobile layout*/}
                 <div className="flex flex-row justify-center items-center md:hidden">
                     <div
-                        className="bg-white rounded-full z-10 p-4 cursor-pointer -m-14"
+                        className="bg-white rounded-full p-4 cursor-pointer -m-14 relative"
                         onClick={() => renderedImage > 1 ? setRenderedImage(renderedImage - 1) : null}>
                         <img 
                             className="w-4 h-4"
@@ -29,11 +29,11 @@ export default function MainCard({images}:ImagesProps) {
                         />
                     </div>
                     <img 
-                    className="md:rounded-2xl max-w-[1440px] w-full md:max-h-[600px]" 
+                    className="md:rounded-2xl max-w-[1440px] w-full md:max-h-[600px] " 
                     src={`../../image-product-${renderedImage}.jpg`}
                     />
                      <div
-                        className="bg-white rounded-full z-10 p-4 cursor-pointer -m-14"
+                        className="bg-white rounded-full p-4 cursor-pointer -m-14 relative"
                         onClick={() => renderedImage < 4 ? setRenderedImage(renderedImage + 1) : null}>
                         <img 
                             className="w-4 h-4"
@@ -107,22 +107,22 @@ export default function MainCard({images}:ImagesProps) {
                             </div>
                         </div>
                         <div className="flex gap-5 items-center py-4">
-                    {
-                        images.map((image) => {
-                            return(
-                                <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
-                                    <img className={`
-                                        w-full h-full rounded-xl bg-cover overflow-ellipsis
-                                        ${renderedImage === image.id ? "border-orange-500 border-[3px] brightness-125": null}
-                                        `}
-                                            src={image.url} 
-                                            onClick={() => setRenderedImage(image.id)}
-                                        />
-                                </div>
-                            )
-                        })
-                    }
-                </div>
+                            {
+                                images.map((image) => {
+                                    return(
+                                        <div key={image.id} className="w-34 h-34 rounded-xl hover:brightness-125 ease-in-out duration-200">
+                                            <img className={`
+                                                w-full h-full rounded-xl bg-cover overflow-ellipsis
+                                                ${renderedImage === image.id ? "border-orange-500 border-[3px] brightness-125": null}
+                                                `}
+                                                    src={image.url} 
+                                                    onClick={() => setRenderedImage(image.id)}
+                                                />
+                                        </div>
+                                    )
+                                })
+                            }
+                        </div>
                     </div>
                 </div>  
             </div>    

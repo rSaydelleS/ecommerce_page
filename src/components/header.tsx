@@ -1,6 +1,11 @@
 import { useState } from "react";
+import { Cart } from "./cart";
 
-export default function Header() {
+interface PriceProps {
+    price: number
+}
+
+export default function Header({price}:PriceProps ) {
     const headerMock = [
         {
             id: 1,
@@ -25,9 +30,10 @@ export default function Header() {
     ];
 
     const [open, setOpen] = useState(false);
+    const [cartOpen, setCartOpen] = useState(false);
 
     return(
-    <header className="flex justify-between p-4 md:px-10 text-black w-screen relative">
+    <header className="flex justify-between p-4 md:px-10 text-black w-screen relative z-10">
         <div className="flex justify-between items-center gap-9">
             {/*mobile modal */}
             <div className=" md:hidden">
@@ -36,7 +42,7 @@ export default function Header() {
                 onClick={() => setOpen(true)}
                 />
             </div>
-            <h1 className="font-semibold text-black text-4xl">senakers</h1>
+            <h1 className="font-bold text-black text-4xl tracking-tighter">sneakers</h1>
             <ul className="hidden md:flex md:justify-between md:gap-9">
             {headerMock.map(({id, content}) => {
                 return <li className="cursor-pointer hover:font-bold ease-in-out duration-200" key={id}>{content}</li> 
@@ -44,7 +50,7 @@ export default function Header() {
             </ul>
         </div>
         <div className="flex justify-between items-center gap-6">
-            <div>
+            <div onClick={() => setCartOpen(true)}>
                 <img className="w-6 h-6 cursor-pointer" src="../../icon-cart.svg" alt="cart image" />
             </div>
             <div>
@@ -65,6 +71,10 @@ export default function Header() {
                 src={"../../icon-close.svg"}
                 alt="close menu" />
             </div>
+        </div>
+        <div 
+        className={`${cartOpen ? "absolute right-0 top-0 z-20" : "hidden"}`} >
+            <Cart price={price} action={setCartOpen}/>
         </div>
     </header>
     )

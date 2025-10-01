@@ -61,7 +61,7 @@ function App() {
                   className="flex flex-col gap-20"
                   key={product.id}>
                   <div>
-                    <Header />
+                    <Header price={product.promotional_price}/>
                   </div>
                   <div 
                   className="flex flex-col md:flex-row justify-center items-center gap-32 w-full h-full max-w-[1440px]">
